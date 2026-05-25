@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pizza Cart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Pizza Order Form</h1>
+
+    <input type="text" id="customerName" placeholder="Customer Name">
+
+    <select id="pizzaName">
+      <option>Cheese Pizza</option>
+      <option>Veggie Pizza</option>
+      <option>Korean Pizza</option>
+    </select>
+
+    <select id="size">
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+    </select>
+
+    <select id="crust">
+
+      <option value="Normal Crust">
+        Normal Crust
+      </option>
+
+      <option value="Cheese Burst">
+        Cheese Burst
+      </option>
+
+      <option value="Thin Crust">
+        Thin Crust
+      </option>
+
+      <option value="Stuffed Crust">
+        Stuffed Crust
+      </option>
+
+      <option value="Garlic Crust">
+        Garlic Crust
+      </option>
+
+      <option value="Italian Crust">
+        Italian Crust
+      </option>
+
+    </select>
+
+
+    <select id="toppings" multiple size="8">
+
+      <option value="Extra Cheese">
+        Extra Cheese
+      </option>
+
+      <option value="Paneer">
+        Paneer
+      </option>
+
+      <option value="Mushroom">
+        Mushroom
+      </option>
+
+      <option value="Black Olives">
+        Black Olives
+      </option>
+
+      <option value="Corn">
+        Corn
+      </option>
+
+      <option value="Onion">
+        Onion
+      </option>
+
+      <option value="Capsicum">
+        Capsicum
+      </option>
+
+      <option value="Jalapeno">
+        Jalapeno
+      </option>
+
+      <option value="Tomato">
+        Tomato
+      </option>
+
+      <option value="Chicken">
+        Chicken
+      </option>
+
+      <option value="Pepperoni">
+        Pepperoni
+      </option>
+
+      <option value="Korean Toppings">
+        Korean Toppings
+      </option>
+
+      <option value="Sausage">
+        Sausage
+      </option>
+
+      <option value="Bacon">
+        Bacon
+      </option>
+
+      <option value="Pineapple">
+        Pineapple
+      </option>
+
+    </select>
+
+    <input type="text" id="toppings" placeholder="Enter toppings">
+
+    <input type="number" id="quantity" placeholder="Quantity">
+
+    <button onclick="addPizza()">Add Pizza</button>
+
+    <h2>Cart</h2>
+
+    <div id="cart"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
