@@ -2,127 +2,128 @@
 <html>
 
 <head>
+
   <title>Pizza Cart</title>
+
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
   <div class="container">
+
     <h1>Pizza Order Form</h1>
+
 
     <input type="text" id="customerName" placeholder="Customer Name">
 
+
     <select id="pizzaName">
-      <option>Cheese Pizza</option>
-      <option>Veggie Pizza</option>
-      <option>Korean Pizza</option>
+
+      <option value="Cheese Pizza">
+        Cheese Pizza (₹300)
+      </option>
+
+      <option value="Veggie Pizza">
+        Veggie Pizza (₹350)
+      </option>
+
+      <option value="Korean Pizza">
+        Korean Pizza (₹420)
+      </option>
+
+      <option value="Chicken Pizza">
+        Chicken Pizza (₹450)
+      </option>
+
+      <option value="Pepperoni Pizza">
+        Pepperoni Pizza (₹480)
+      </option>
+
     </select>
 
+
     <select id="size">
-      <option>Small</option>
-      <option>Medium</option>
-      <option>Large</option>
+
+      <option value="Small">
+        Small (+₹0)
+      </option>
+
+      <option value="Medium">
+        Medium (+₹100)
+      </option>
+
+      <option value="Large">
+        Large (+₹200)
+      </option>
+
     </select>
+
+
+    <!-- CRUST -->
 
     <select id="crust">
 
       <option value="Normal Crust">
-        Normal Crust
+        Normal Crust (₹0)
       </option>
 
       <option value="Cheese Burst">
-        Cheese Burst
+        Cheese Burst (+₹150)
       </option>
 
       <option value="Thin Crust">
-        Thin Crust
+        Thin Crust (+₹50)
       </option>
 
       <option value="Stuffed Crust">
-        Stuffed Crust
+        Stuffed Crust (+₹180)
       </option>
 
       <option value="Garlic Crust">
-        Garlic Crust
+        Garlic Crust (+₹90)
       </option>
 
       <option value="Italian Crust">
-        Italian Crust
+        Italian Crust (+₹120)
       </option>
 
     </select>
 
 
-    <select id="toppings" multiple size="8">
+    <!-- TOPPINGS -->
 
-      <option value="Extra Cheese">
-        Extra Cheese
-      </option>
-
-      <option value="Paneer">
-        Paneer
-      </option>
-
-      <option value="Mushroom">
-        Mushroom
-      </option>
-
-      <option value="Black Olives">
-        Black Olives
-      </option>
-
-      <option value="Corn">
-        Corn
-      </option>
-
-      <option value="Onion">
-        Onion
-      </option>
-
-      <option value="Capsicum">
-        Capsicum
-      </option>
-
-      <option value="Jalapeno">
-        Jalapeno
-      </option>
-
-      <option value="Tomato">
-        Tomato
-      </option>
-
-      <option value="Chicken">
-        Chicken
-      </option>
-
-      <option value="Pepperoni">
-        Pepperoni
-      </option>
-
-      <option value="Korean Toppings">
-        Korean Toppings
-      </option>
-
-      <option value="Sausage">
-        Sausage
-      </option>
-
-      <option value="Bacon">
-        Bacon
-      </option>
-
-      <option value="Pineapple">
-        Pineapple
-      </option>
-
+    <select id="toppingSelect" multiple size="8">
+      <option value="Extra Cheese">Extra Cheese (+₹50)</option>
+      <option value="Paneer">Paneer (+₹70)</option>
+      <option value="Mushroom">Mushroom (+₹40)</option>
+      <option value="Black Olives">Black Olives (+₹60)</option>
+      <option value="Corn">Corn (+₹30)</option>
+      <option value="Onion">Onion (+₹20)</option>
+      <option value="Capsicum">Capsicum (+₹25)</option>
+      <option value="Jalapeno">Jalapeno (+₹45)</option>
+      <option value="Tomato">Tomato (+₹20)</option>
+      <option value="Chicken">Chicken (+₹100)</option>
+      <option value="Pepperoni">Pepperoni (+₹120)</option>
+      <option value="Korean Toppings">Korean Toppings (+₹80)</option>
+      <option value="Sausage">Sausage (+₹110)</option>
+      <option value="Bacon">Bacon (+₹130)</option>
+      <option value="Pineapple">Pineapple (+₹60)</option>
     </select>
 
-    <input type="text" id="toppings" placeholder="Enter toppings">
+
+    <!-- SELECTED TOPPINGS -->
+    <div id="selectedToppings"></div>
+
 
     <input type="number" id="quantity" placeholder="Quantity">
 
-    <button onclick="addPizza()">Add Pizza</button>
+
+    <button onclick="addPizza()">
+      Add Pizza
+    </button>
+
 
     <h2>Cart</h2>
 

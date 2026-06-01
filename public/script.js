@@ -176,72 +176,70 @@ async function loadCart() {
 
 // ADD OR UPDATE PIZZA
 async function addPizza() {
-  const toppingsSelect = document.getElementById("toppings");
+  try {
+    const toppingsSelect = document.getElementById("toppingSelect");
 
-  const toppingsArray = Array.from(toppingsSelect.selectedOptions).map(
-    (option) => option.value,
-  );
+    const toppingsArray = Array.from(toppingsSelect.selectedOptions).map(
+      (option) => option.value,
+    );
 
-  const size = document.getElementById("size").value;
+    const size = document.getElementById("size").value;
+    const crust = document.getElementById("crust").value;
 
-  const crust = document.getElementById("crust").value;
+    const quantity = Number(document.getElementById("quantity").value);
 
-  const quantity = Number(document.getElementById("quantity").value);
+    if (!quantity || quantity < 1) {
+      alert("Please enter a valid quantity");
+      return;
+    }
 
-  const pricing = calculatePrice(size, crust, toppingsArray, quantity);
+    const pricing = calculatePrice(size, crust, toppingsArray, quantity);
 
-  const pizza = {
-    customerName: document.getElementById("customerName").value,
+    const pizza = {
+      customerName: document.getElementById("customerName").value,
+      pizzaName: document.getElementById("pizzaName").value,
+      size,
+      crust,
+      toppings: toppingsArray,
+      quantity,
+      basePrice: pricing.basePrice,
+      totalPrice: pricing.totalPrice,
+    };
 
-    pizzaName: document.getElementById("pizzaName").value,
+    let response;
+    console.log("Current editId:", editId);
+    if (editId) {
+      response = await fetch(`${API}/${editId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pizza),
+      });
 
-    size: size,
+      editId = null;
+    } else {
+      response = await fetch(API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pizza),
+      });
+    }
 
-    crust: crust,
+    const data = await response.json();
 
-    toppings: toppingsArray,
+    console.log("Saved:", data);
 
-    quantity: quantity,
-
-    basePrice: pricing.basePrice,
-
-    totalPrice: pricing.totalPrice,
-  };
-
-  // UPDATE
-  if (editId) {
-    await fetch(`${API}/${editId}`, {
-      method: "PUT",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(pizza),
-    });
-
-    editId = null;
+    clearForm();
+    loadCart();
+  } catch (error) {
+    console.error(error);
   }
-
-  // CREATE
-  else {
-    await fetch(API, {
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify(pizza),
-    });
-  }
-
-  clearForm();
-
-  loadCart();
 }
-
 // EDIT PIZZA
+console.log("Editing Pizza ID:", id);
 async function editPizza(id) {
   const res = await fetch(API);
 
@@ -259,8 +257,7 @@ async function editPizza(id) {
 
   document.getElementById("quantity").value = pizza.quantity;
 
-  // MULTI SELECT TOPPINGS
-  const toppingsSelect = document.getElementById("toppings");
+  const toppingsSelect = document.getElementById("toppingSelect");
 
   Array.from(toppingsSelect.options).forEach((option) => {
     option.selected = pizza.toppings.includes(option.value);
@@ -277,7 +274,6 @@ async function deletePizza(id) {
 
   loadCart();
 }
-
 // CLEAR FORM
 function clearForm() {
   document.getElementById("customerName").value = "";
@@ -290,7 +286,7 @@ function clearForm() {
 
   document.getElementById("quantity").value = "";
 
-  const toppingsSelect = document.getElementById("toppings");
+  const toppingsSelect = document.getElementById("toppingSelect");
 
   Array.from(toppingsSelect.options).forEach((option) => {
     option.selected = false;
